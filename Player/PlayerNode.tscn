@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=3 uid="uid://cocwdaty441ep"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_xckyq"]
+[ext_resource type="Script" path="res://addons/character-controller/abilities/walk_ability_3d.gd" id="2_dwcod"]
+[ext_resource type="Script" path="res://addons/character-controller/abilities/sprint_ability_3d.gd" id="3_4b3c7"]
+[ext_resource type="PackedScene" path="res://addons/character-controller/example/main/audios/player_audios.tscn" id="4_a1jcp"]
+[ext_resource type="Script" path="res://addons/character-controller/abilities/crouch_ability_3d.gd" id="4_brvng"]
+[ext_resource type="Script" path="res://addons/character-controller/abilities/jump_ability_3d.gd" id="5_5q7re"]
+[ext_resource type="Script" path="res://addons/character-controller/abilities/fly_ability_3d.gd" id="6_6msy2"]
+[ext_resource type="Script" path="res://addons/character-controller/abilities/swim_ability_3d.gd" id="7_pr6wb"]
+[ext_resource type="Script" path="res://addons/character-controller/fps/head_movement_3d.gd" id="8_j1qb3"]
+[ext_resource type="Script" path="res://addons/character-controller/fps/bob/head_bob.gd" id="9_k5us7"]
+[ext_resource type="Curve" path="res://addons/character-controller/fps/bob/bob_curve.tres" id="10_x47j6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
+
+[sub_resource type="Gradient" id="Gradient_jok3q"]
+offsets = PackedFloat32Array(0, 0.786713, 0.912587)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.534965, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a1wvu"]
+gradient = SubResource("Gradient_jok3q")
+fill = 1
+fill_from = Vector2(0.519417, 0.5)
+fill_to = Vector2(0.878641, 0.15534)
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+floor_stop_on_slope = false
+floor_snap_length = 0.5
+script = ExtResource("1_xckyq")
+double_jumps = 1
+double_jump_power = 7.0
+gravity_multiplier = 2.0
+speed = 5
+acceleration = 6
+air_control = 0.1
+sprint_speed_multiplier = 1.2
+crouch_speed_multiplier = 0.3
+jump_height = 7
+abilities_path = Array[NodePath]([NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D"), NodePath("Crouch Ability 3D"), NodePath("Sprint Ability 3D")])
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fn1rj")
+
+[node name="Head Check" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1, 0)
+
+[node name="Walk Ability 3D" type="Node3D" parent="."]
+script = ExtResource("2_dwcod")
+
+[node name="Sprint Ability 3D" type="Node3D" parent="."]
+script = ExtResource("3_4b3c7")
+
+[node name="Crouch Ability 3D" type="Node3D" parent="."]
+script = ExtResource("4_brvng")
+
+[node name="Jump Ability 3D" type="Node3D" parent="."]
+script = ExtResource("5_5q7re")
+
+[node name="Fly Ability 3D" type="Node3D" parent="."]
+script = ExtResource("6_6msy2")
+
+[node name="Swim Ability 3D" type="Node3D" parent="."]
+script = ExtResource("7_pr6wb")
+
+[node name="RayCast3D" type="RayCast3D" parent="Swim Ability 3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -2, 0)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Head" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+script = ExtResource("8_j1qb3")
+
+[node name="Camera" type="Camera3D" parent="Head"]
+current = true
+
+[node name="Head Bob" type="Node" parent="Head"]
+script = ExtResource("9_k5us7")
+head_path = NodePath("../Camera")
+bob_curve = ExtResource("10_x47j6")
+
+[node name="Player Audios" parent="." instance=ExtResource("4_a1jcp")]
+
+[node name="Shadow" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.85942, 0)
+size = Vector3(1.3, 10, 1.3)
+texture_albedo = SubResource("GradientTexture2D_a1wvu")
+distance_fade_enabled = true
+distance_fade_begin = 80.0

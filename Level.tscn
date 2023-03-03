@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d4ewnb7kn8gt5" path="res://addons/kenney_prototype_tools/scenes/red/red_11.tscn" id="4_qeuji"]
 [ext_resource type="PackedScene" uid="uid://bo31ctjl47cmn" path="res://addons/kenney_prototype_tools/scenes/orange/orange_03.tscn" id="5_yw4ko"]
 [ext_resource type="PackedScene" uid="uid://djf37ftpr8tyw" path="res://Rotater/rotater.tscn" id="6_bmtv2"]
-[ext_resource type="PackedScene" uid="uid://2oxdgu03lnbk" path="res://addons/character-controller/example/main/player.tscn" id="7_kvuxf"]
+[ext_resource type="PackedScene" uid="uid://cocwdaty441ep" path="res://Player/PlayerNode.tscn" id="9_hppp8"]
 [ext_resource type="PackedScene" uid="uid://diac8sepm33si" path="res://Jumper/jumper.tscn" id="9_ovqmd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5cdfn"]
@@ -31,7 +31,7 @@ sdfgi_bounce_feedback = 0.64
 [sub_resource type="BoxShape3D" id="BoxShape3D_porsk"]
 size = Vector3(133.959, 4.39328, 79.0498)
 
-[node name="Node3D" type="Node3D"]
+[node name="TestLevel" type="Node3D"]
 script = ExtResource("1_wck88")
 
 [node name="Level" type="Marker3D" parent="."]
@@ -94,9 +94,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rmke4")
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("7_kvuxf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.21365, 2.91529, -2.40422)
-
 [node name="Restarter" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.4692, 0)
 
@@ -114,4 +111,7 @@ power = 20
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.378, 0.78975, -3.69013)
 power = 20
 
-[connection signal="body_entered" from="Restarter" to="." method="_on_area_3d_body_entered"]
+[node name="PlayerNode" parent="." instance=ExtResource("9_hppp8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79297, 2.69268, -2.65104)
+
+[connection signal="body_entered" from="Restarter" to="." method="_on_restarter_body_entered"]
