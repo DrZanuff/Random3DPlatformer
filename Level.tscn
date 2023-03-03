@@ -1,0 +1,117 @@
+[gd_scene load_steps=14 format=3 uid="uid://c4r8dhggotckt"]
+
+[ext_resource type="PackedScene" uid="uid://cn13pk5kwsiva" path="res://addons/kenney_prototype_tools/scenes/dark/dark_01.tscn" id="1_khcjw"]
+[ext_resource type="Script" path="res://Level.gd" id="1_wck88"]
+[ext_resource type="PackedScene" uid="uid://bydyult2k5rcb" path="res://addons/kenney_prototype_tools/scenes/green/green_01.tscn" id="2_x283u"]
+[ext_resource type="PackedScene" uid="uid://bb22tc7joih0r" path="res://addons/kenney_prototype_tools/scenes/light/light_08.tscn" id="3_5wnfw"]
+[ext_resource type="PackedScene" uid="uid://d4ewnb7kn8gt5" path="res://addons/kenney_prototype_tools/scenes/red/red_11.tscn" id="4_qeuji"]
+[ext_resource type="PackedScene" uid="uid://bo31ctjl47cmn" path="res://addons/kenney_prototype_tools/scenes/orange/orange_03.tscn" id="5_yw4ko"]
+[ext_resource type="PackedScene" uid="uid://djf37ftpr8tyw" path="res://Rotater/rotater.tscn" id="6_bmtv2"]
+[ext_resource type="PackedScene" uid="uid://2oxdgu03lnbk" path="res://addons/character-controller/example/main/player.tscn" id="7_kvuxf"]
+[ext_resource type="PackedScene" uid="uid://diac8sepm33si" path="res://Jumper/jumper.tscn" id="9_ovqmd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5cdfn"]
+sky_top_color = Color(0, 0.596078, 0.866667, 1)
+sky_horizon_color = Color(0.423529, 0.690196, 0.85098, 1)
+sky_curve = 0.0699775
+ground_bottom_color = Color(0.203922, 0.596078, 0.447059, 1)
+ground_horizon_color = Color(0.317647, 0.737255, 0.678431, 1)
+
+[sub_resource type="Sky" id="Sky_ja06p"]
+sky_material = SubResource("ProceduralSkyMaterial_5cdfn")
+
+[sub_resource type="Environment" id="Environment_rmke4"]
+background_mode = 2
+sky = SubResource("Sky_ja06p")
+ambient_light_source = 3
+ambient_light_color = Color(0.772549, 0.717647, 0.690196, 1)
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.64
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_porsk"]
+size = Vector3(133.959, 4.39328, 79.0498)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_wck88")
+
+[node name="Level" type="Marker3D" parent="."]
+transform = Transform3D(2.36565, 0, 0, 0, 2.36565, 0, 0, 0, 2.36565, 0, 0, 0)
+
+[node name="Cubes" type="Node3D" parent="Level"]
+
+[node name="Cube" parent="Level/Cubes" instance=ExtResource("1_khcjw")]
+transform = Transform3D(3.01377, 0, 0, 0, 2.5931, 0, 0, 0, 0.338, 0.000203453, 0.00370726, 0.00252849)
+
+[node name="Cube2" parent="Level/Cubes" instance=ExtResource("2_x283u")]
+transform = Transform3D(3.00079, 0, 0, 0, 0.400105, 0, 0, 0, 3.10082, 0, 0, -3)
+
+[node name="Cube7" parent="Level/Cubes" instance=ExtResource("2_x283u")]
+transform = Transform3D(3.00079, 0, 0, 0, 0.400099, -0.0173182, 0, 0.0022346, 3.10077, -7.61804, 0, -3)
+
+[node name="Cube11" parent="Level/Cubes" instance=ExtResource("2_x283u")]
+transform = Transform3D(3.00079, 0, 0, 0, 0.400105, 0, 0, 0, 3.10082, -17.816, 0, -3)
+
+[node name="Cube12" parent="Level/Cubes" instance=ExtResource("2_x283u")]
+transform = Transform3D(0.649203, 0, 0, 0, 0.400105, 0, 0, 0, 0.783308, -11.4924, 0, -1.95588)
+
+[node name="Cube3" parent="Level/Cubes" instance=ExtResource("3_5wnfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.10203, -1.02091, 0, -2.99096)
+
+[node name="Cube10" parent="Level/Cubes" instance=ExtResource("3_5wnfw")]
+transform = Transform3D(0.37151, -0.785932, 0, 0.472223, 0.618312, 0, 0, 0, 3.10203, 0.418043, -0.0789977, -2.99096)
+
+[node name="Cube4" parent="Level/Cubes" instance=ExtResource("3_5wnfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.10203, 2.53788, 0, -2.99096)
+
+[node name="Cube5" parent="Level/Cubes" instance=ExtResource("4_qeuji")]
+transform = Transform3D(2.87865, 0, 0, 0, 1.80086, 0, 0, 0, 1, 0, 0, -3.99809)
+
+[node name="Cube6" parent="Level/Cubes" instance=ExtResource("5_yw4ko")]
+transform = Transform3D(4.10806, 0, 0, 0, 1, 0, 0, 0, 0.97916, -4.79506, -0.803446, -2.0362)
+
+[node name="Cube8" parent="Level/Cubes" instance=ExtResource("5_yw4ko")]
+transform = Transform3D(4.10806, 0, 0, 0, 1, 0, 0, 0, 0.686059, -4.79506, -0.803446, -3.43154)
+
+[node name="Cube9" parent="Level/Cubes" instance=ExtResource("5_yw4ko")]
+transform = Transform3D(4.10806, 0, 0, 0, 1, 0, 0, 0, 0.686059, -4.79506, -0.797356, -0.522378)
+
+[node name="Rotater" parent="Level" instance=ExtResource("6_bmtv2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27698, -0.418478, -3.23129)
+
+[node name="Rotater2" parent="Level" instance=ExtResource("6_bmtv2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17808, -0.418478, -3.23129)
+speed = 1
+
+[node name="Rotater3" parent="Level" instance=ExtResource("6_bmtv2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.12637, -0.418478, -0.465916)
+dir = "right"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.248369, 0.968666, 0, -0.968666, 0.248369, 0, 5.86673, 0)
+light_color = Color(0.952941, 0.839216, 0.529412, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rmke4")
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("7_kvuxf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.21365, 2.91529, -2.40422)
+
+[node name="Restarter" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.4692, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Restarter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00800896, 0.0378056, -0.0248661)
+shape = SubResource("BoxShape3D_porsk")
+
+[node name="Jumpers" type="Marker3D" parent="."]
+
+[node name="Jumper" parent="Jumpers" instance=ExtResource("9_ovqmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5046, 0.789755, -3.69013)
+power = 20
+
+[node name="Jumper2" parent="Jumpers" instance=ExtResource("9_ovqmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.378, 0.78975, -3.69013)
+power = 20
+
+[connection signal="body_entered" from="Restarter" to="." method="_on_area_3d_body_entered"]

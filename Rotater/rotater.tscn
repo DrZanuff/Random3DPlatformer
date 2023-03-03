@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://djf37ftpr8tyw"]
+
+[ext_resource type="Script" path="res://Rotater/Rotater.gd" id="1_po7o2"]
+[ext_resource type="PackedScene" uid="uid://iolvfi052eqp" path="res://addons/kenney_prototype_tools/scenes/orange/orange_11.tscn" id="2_mq7x2"]
+[ext_resource type="PackedScene" uid="uid://cday5vpedvtba" path="res://addons/kenney_prototype_tools/scenes/purple/purple_01.tscn" id="3_e2bp2"]
+
+[node name="Rotater" type="Node3D"]
+script = ExtResource("1_po7o2")
+
+[node name="Cube" parent="." instance=ExtResource("2_mq7x2")]
+transform = Transform3D(0.36034, 0, 0, 0, 1, 0, 0, 0, 0.373807, 0, 0, 0)
+
+[node name="Rot" parent="." instance=ExtResource("3_e2bp2")]
+transform = Transform3D(0.0740193, 0, 0, 0, 0.283743, 0, 0, 0, 1.60026, 0, 0.997587, 0)
