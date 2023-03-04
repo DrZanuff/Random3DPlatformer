@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cocwdaty441ep"]
+[gd_scene load_steps=19 format=3 uid="uid://cocwdaty441ep"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_xckyq"]
 [ext_resource type="Script" path="res://addons/character-controller/abilities/walk_ability_3d.gd" id="2_dwcod"]
@@ -6,13 +6,26 @@
 [ext_resource type="PackedScene" path="res://addons/character-controller/example/main/audios/player_audios.tscn" id="4_a1jcp"]
 [ext_resource type="Script" path="res://addons/character-controller/abilities/crouch_ability_3d.gd" id="4_brvng"]
 [ext_resource type="Script" path="res://addons/character-controller/abilities/jump_ability_3d.gd" id="5_5q7re"]
+[ext_resource type="Script" path="res://Player/Double Jump 3D.gd" id="5_kdhhy"]
 [ext_resource type="Script" path="res://addons/character-controller/abilities/fly_ability_3d.gd" id="6_6msy2"]
+[ext_resource type="Script" path="res://Player/Dash 3D.gd" id="6_uk5n7"]
 [ext_resource type="Script" path="res://addons/character-controller/abilities/swim_ability_3d.gd" id="7_pr6wb"]
 [ext_resource type="Script" path="res://addons/character-controller/fps/head_movement_3d.gd" id="8_j1qb3"]
 [ext_resource type="Script" path="res://addons/character-controller/fps/bob/head_bob.gd" id="9_k5us7"]
 [ext_resource type="Curve" path="res://addons/character-controller/fps/bob/bob_curve.tres" id="10_x47j6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1mjd"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8fr5t"]
+material = SubResource("StandardMaterial3D_n1mjd")
+radius = 0.004
+height = 0.03
+radial_segments = 6
+rings = 6
 
 [sub_resource type="Gradient" id="Gradient_jok3q"]
 offsets = PackedFloat32Array(0, 0.786713, 0.912587)
@@ -28,8 +41,6 @@ fill_to = Vector2(0.878641, 0.15534)
 floor_stop_on_slope = false
 floor_snap_length = 0.5
 script = ExtResource("1_xckyq")
-double_jumps = 1
-double_jump_power = 7.0
 gravity_multiplier = 2.0
 speed = 5
 acceleration = 6
@@ -53,6 +64,35 @@ script = ExtResource("3_4b3c7")
 
 [node name="Crouch Ability 3D" type="Node3D" parent="."]
 script = ExtResource("4_brvng")
+
+[node name="Double Jump 3D" type="Node3D" parent="."]
+script = ExtResource("5_kdhhy")
+double_jumps = 1
+double_jump_power = 7.0
+
+[node name="Dash 3D" type="Node3D" parent="."]
+script = ExtResource("6_uk5n7")
+dashes = 1
+dash_power = 18.0
+
+[node name="Timer" type="Timer" parent="Dash 3D"]
+one_shot = true
+
+[node name="DashParticles" type="CPUParticles3D" parent="Dash 3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.650892, -2.77554)
+visibility_range_fade_mode = 1
+emitting = false
+amount = 70
+mesh = SubResource("SphereMesh_8fr5t")
+emission_shape = 1
+emission_sphere_radius = 2.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, -1)
+spread = 105.39
+gravity = Vector3(0, 0, 20)
+linear_accel_max = 22.22
+color = Color(0, 0.376471, 0.862745, 1)
 
 [node name="Jump Ability 3D" type="Node3D" parent="."]
 script = ExtResource("5_5q7re")
@@ -91,3 +131,5 @@ size = Vector3(1.3, 10, 1.3)
 texture_albedo = SubResource("GradientTexture2D_a1wvu")
 distance_fade_enabled = true
 distance_fade_begin = 80.0
+
+[connection signal="timeout" from="Dash 3D/Timer" to="Dash 3D" method="_on_timer_timeout"]

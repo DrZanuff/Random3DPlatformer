@@ -21,6 +21,7 @@ class_name Player
 @export var input_jump_action_name := "move_jump"
 @export var input_crouch_action_name := "move_crouch"
 @export var input_fly_mode_action_name := "move_fly_mode"
+@export var input_dash_action_name := "dash"
 
 @export var underwater_env: Environment
 

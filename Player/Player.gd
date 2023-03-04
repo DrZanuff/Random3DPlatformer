@@ -1,9 +1,7 @@
 extends Player
 
-@export_category("Game Skills")
-@export var double_jumps : int = 0
-var current_double_jumps : int = 0
-@export var double_jump_power : float = 3.0
+@onready var DoubleJumpNode : DoubleJump3D = get_node("Double Jump 3D")
+@onready var DashNode : Dash3D = get_node("Dash 3D")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -16,14 +14,8 @@ func _physics_process(delta):
 	var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 
 	if is_valid_input:
-		if Input.is_action_just_pressed(input_jump_action_name) and !is_on_floor():
-			if current_double_jumps < double_jumps:
-				velocity.y = double_jump_power
-				current_double_jumps += 1
-				print("im double jumping")
-	
-		if is_on_floor():
-			current_double_jumps = 0
+		DoubleJumpNode.check_apply_double_jump(input_jump_action_name)
+		DashNode.check_apply_dash(input_dash_action_name)
 		
 		if Input.is_action_just_pressed(input_fly_mode_action_name):
 			fly_ability.set_active(not fly_ability.is_actived())
@@ -38,6 +30,7 @@ func _physics_process(delta):
 		# NOTE: It is important to always call move() even if we have no inputs 
 		## to process, as we still need to calculate gravity and collisions.
 		move(delta)
+	
 
 
 func _input(event: InputEvent) -> void:
