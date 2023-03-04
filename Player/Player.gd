@@ -5,6 +5,8 @@ class_name PlayerNode
 @onready var DashNode : Dash3D = get_node("Dash 3D")
 @onready var ClimbNode : Climb3D = get_node("Climb 3D")
 
+var is_climbing = false
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	setup()
@@ -18,10 +20,9 @@ func _physics_process(delta):
 	if is_valid_input:
 		DoubleJumpNode.check_apply_double_jump(input_jump_action_name)
 		DashNode.check_apply_dash(input_dash_action_name)
-		ClimbNode.check_apply_climb(input_jump_action_name,input_crouch_action_name)
 		
-		if Input.is_action_just_pressed(input_fly_mode_action_name):
-			fly_ability.set_active(not fly_ability.is_actived())
+#		Climb Mode using FlyMode
+		fly_ability.set_active(ClimbNode.is_climbing)
 		var input_axis = Input.get_vector(input_back_action_name, input_forward_action_name, input_left_action_name, input_right_action_name)
 		var input_jump = Input.is_action_just_pressed(input_jump_action_name)
 		var input_crouch = Input.is_action_pressed(input_crouch_action_name)
@@ -51,3 +52,4 @@ func _on_controller_subemerged():
 
 func toogle_climb_mode(state:bool):
 	ClimbNode.set_climbing(state)
+	is_climbing = state

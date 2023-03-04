@@ -1,7 +1,7 @@
 extends Node3D
 class_name Dash3D
 
-@onready var player : Player = get_parent()
+@onready var player : PlayerNode = get_parent()
 @export_group("Dash")
 @export var dashes : int = 0
 var current_dashes : int = 0
@@ -32,6 +32,9 @@ func check_apply_dash(input_jump_action_name : String):
 		$Timer.stop()
 	
 	if player.is_on_floor():
+		current_dashes = 0
+	
+	if player.is_climbing:
 		current_dashes = 0
 
 func _on_timer_timeout():

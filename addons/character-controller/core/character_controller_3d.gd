@@ -120,7 +120,7 @@ signal stopped_floating
 @export_group("Fly")
 
 ## Speed multiplier when fly mode is actived
-@export var fly_mode_speed_modifier := 2
+@export var fly_mode_speed_modifier := 2.0
 
 
 @export_group("Swim")

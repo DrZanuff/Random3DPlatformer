@@ -49,7 +49,7 @@ air_control = 0.1
 sprint_speed_multiplier = 1.2
 crouch_speed_multiplier = 0.3
 jump_height = 7
-abilities_path = Array[NodePath]([NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D"), NodePath("Crouch Ability 3D"), NodePath("Sprint Ability 3D")])
+abilities_path = Array[NodePath]([NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D"), NodePath("Crouch Ability 3D"), NodePath("Sprint Ability 3D"), NodePath("Fly Ability 3D")])
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_fn1rj")
@@ -104,6 +104,7 @@ script = ExtResource("5_5q7re")
 
 [node name="Fly Ability 3D" type="Node3D" parent="."]
 script = ExtResource("6_6msy2")
+speed_modifier = 1.0
 
 [node name="Swim Ability 3D" type="Node3D" parent="."]
 script = ExtResource("7_pr6wb")
