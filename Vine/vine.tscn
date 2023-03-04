@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://u3cvjhsav2ev"]
+
+[ext_resource type="Texture2D" uid="uid://iiojg2cfw4r3" path="res://Vine/vine.png" id="1_xa7x7"]
+[ext_resource type="Script" path="res://Vine/vine.gd" id="2_osufh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sm0i"]
+transparency = 1
+albedo_texture = ExtResource("1_xa7x7")
+uv1_scale = Vector3(3, 3, 3)
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8rwa"]
+size = Vector3(0.065, 1, 1)
+
+[node name="Vide" type="CSGBox3D"]
+material_override = SubResource("StandardMaterial3D_0sm0i")
+size = Vector3(0.0653008, 0.873013, 1)
+script = ExtResource("2_osufh")
+
+[node name="VineArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VineArea"]
+shape = SubResource("BoxShape3D_p8rwa")
+
+[connection signal="body_entered" from="VineArea" to="." method="_on_vine_area_body_entered"]
+[connection signal="body_exited" from="VineArea" to="." method="_on_vine_area_body_exited"]
