@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cocwdaty441ep"]
+[gd_scene load_steps=25 format=3 uid="uid://cocwdaty441ep"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_xckyq"]
 [ext_resource type="Script" path="res://addons/character-controller/abilities/walk_ability_3d.gd" id="2_dwcod"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://addons/character-controller/fps/head_movement_3d.gd" id="8_j1qb3"]
 [ext_resource type="Script" path="res://addons/character-controller/fps/bob/head_bob.gd" id="9_k5us7"]
 [ext_resource type="Curve" path="res://addons/character-controller/fps/bob/bob_curve.tres" id="10_x47j6"]
+[ext_resource type="Texture2D" uid="uid://6yuh3vvo8es8" path="res://Player/Weapons/EnergyBlaster/Textures/EnergyBlaster.png" id="15_52eod"]
+[ext_resource type="ArrayMesh" uid="uid://bo22f2saad8f0" path="res://Player/Weapons/EnergyBlaster/EnergyBlaster.obj" id="15_q3hg0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
 
@@ -28,6 +30,9 @@ height = 0.03
 radial_segments = 6
 rings = 6
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydkj5"]
+albedo_texture = ExtResource("15_52eod")
+
 [sub_resource type="Gradient" id="Gradient_jok3q"]
 offsets = PackedFloat32Array(0, 0.786713, 0.912587)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.534965, 0, 0, 0, 0)
@@ -37,6 +42,15 @@ gradient = SubResource("Gradient_jok3q")
 fill = 1
 fill_from = Vector2(0.519417, 0.5)
 fill_to = Vector2(0.878641, 0.15534)
+
+[sub_resource type="Gradient" id="Gradient_tn1q8"]
+offsets = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0.135484, 0.193548, 0.309677, 0.36129)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o427x"]
+gradient = SubResource("Gradient_tn1q8")
+fill = 1
+fill_from = Vector2(0.495413, 0.472477)
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 floor_stop_on_slope = false
@@ -124,6 +138,18 @@ script = ExtResource("8_j1qb3")
 [node name="Camera" type="Camera3D" parent="Head"]
 current = true
 
+[node name="Weapons" type="Marker3D" parent="Head/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.28662, -0.847253)
+
+[node name="Energy" type="Node3D" parent="Head/Camera/Weapons"]
+
+[node name="EnergyBlaster" type="MeshInstance3D" parent="Head/Camera/Weapons/Energy"]
+transform = Transform3D(4.99767e-08, -1.14333, -9.99534e-08, -1.14333, -4.99767e-08, 0, -4.3691e-15, 9.99534e-08, -1.14333, 0.133721, 0.0905942, 0.543525)
+material_override = SubResource("StandardMaterial3D_ydkj5")
+cast_shadow = 0
+mesh = ExtResource("15_q3hg0")
+skeleton = NodePath("../../../../..")
+
 [node name="Head Bob" type="Node" parent="Head"]
 script = ExtResource("9_k5us7")
 head_path = NodePath("../Camera")
@@ -137,5 +163,30 @@ size = Vector3(1.3, 10, 1.3)
 texture_albedo = SubResource("GradientTexture2D_a1wvu")
 distance_fade_enabled = true
 distance_fade_begin = 80.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AimContainer" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/AimContainer"]
+texture = SubResource("GradientTexture2D_o427x")
 
 [connection signal="timeout" from="Dash 3D/Timer" to="Dash 3D" method="_on_timer_timeout"]
