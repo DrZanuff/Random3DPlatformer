@@ -1,0 +1,281 @@
+[gd_scene load_steps=17 format=3 uid="uid://wvy6cqscf72m"]
+
+[ext_resource type="Script" path="res://MileStone/MileStone.gd" id="1_fr0y0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haedw"]
+albedo_color = Color(0, 0, 0, 1)
+emission = Color(0, 0.658824, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_acc6t"]
+material = SubResource("StandardMaterial3D_haedw")
+radial_segments = 16
+
+[sub_resource type="Gradient" id="Gradient_xmrbg"]
+offsets = PackedFloat32Array(0, 0.290698, 0.5, 0.656977, 0.906977)
+colors = PackedColorArray(0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0.286275, 1, 0.219608, 0.992157, 0.145098, 1, 0.702126, 0.97223, 0.472274, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4jqcw"]
+gradient = SubResource("Gradient_xmrbg")
+fill_from = Vector2(1, 0.666667)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptorl"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+albedo_texture = SubResource("GradientTexture2D_4jqcw")
+emission_enabled = true
+emission = Color(0, 0.733333, 0, 1)
+emission_energy_multiplier = 5.27
+emission_texture = SubResource("GradientTexture2D_4jqcw")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q72uk"]
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e32r8"]
+transparency = 1
+albedo_color = Color(0, 0.807843, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 2.61
+
+[sub_resource type="PrismMesh" id="PrismMesh_6050k"]
+
+[sub_resource type="Animation" id="Animation_cbg4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnergyField:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jewel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jewel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.0647, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnergyField:material_override:albedo_texture:fill_from")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.666667)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnergyField:material_override:emission_texture:fill_from")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.666667)]
+}
+
+[sub_resource type="Animation" id="Animation_yhf6n"]
+resource_name = "disabled"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnergyField:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jewel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jewel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4, 2.6),
+"transitions": PackedFloat32Array(0.210224, 1.07177, 1.03526),
+"update": 0,
+"values": [Vector3(0, 1.0647, 0), Vector3(0, 1.21519, 0), Vector3(0, 0.939511, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1h6ye"]
+resource_name = "enabled"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jewel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnergyField:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnergyField:material_override:albedo_texture:fill_from")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.666667)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnergyField:material_override:emission_texture:fill_from")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 2, 3),
+"transitions": PackedFloat32Array(1.07177, 1, 1, 1.23114),
+"update": 0,
+"values": [Vector2(1, 0.666667), Vector2(1, 0.931624), Vector2(1, 0.371795), Vector2(1, 0.666667)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hjw3e"]
+_data = {
+"RESET": SubResource("Animation_cbg4c"),
+"disabled": SubResource("Animation_yhf6n"),
+"enabled": SubResource("Animation_1h6ye")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwquf"]
+albedo_color = Color(0.258824, 0.992157, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tpl7j"]
+material = SubResource("StandardMaterial3D_iwquf")
+radial_segments = 16
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pnmoy"]
+height = 1.654
+radius = 1.085
+
+[node name="MileStone" type="Area3D" groups=["CheckPoint"]]
+script = ExtResource("1_fr0y0")
+type = "CheckPoint"
+
+[node name="CheckPoint" type="Marker3D" parent="."]
+
+[node name="Pad" type="MeshInstance3D" parent="CheckPoint"]
+transform = Transform3D(2.26341, 0, 0, 0, 0.0794512, 0, 0, 0, 2.26341, 0, 0.181658, 0)
+mesh = SubResource("CylinderMesh_acc6t")
+skeleton = NodePath("../../LevelStart")
+
+[node name="EnergyField" type="MeshInstance3D" parent="CheckPoint"]
+unique_name_in_owner = true
+transform = Transform3D(1.47091, 0, 0, 0, 0.594831, 0, 0, 0, 1.47091, 0, 0.79052, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_ptorl")
+transparency = 0.98
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_q72uk")
+
+[node name="Light" type="OmniLight3D" parent="CheckPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98706, 0)
+light_color = Color(0.560784, 1, 0.529412, 1)
+light_energy = 6.485
+light_indirect_energy = 1.02
+light_specular = 2.336
+shadow_enabled = true
+omni_range = 2.21578
+
+[node name="Jewel" type="MeshInstance3D" parent="CheckPoint"]
+unique_name_in_owner = true
+transform = Transform3D(-0.277639, 0, -0.216853, 0, 0.429769, 0, 0.327427, 0, -0.183881, 0, 1.0647, 0)
+material_override = SubResource("StandardMaterial3D_e32r8")
+transparency = 0.41
+mesh = SubResource("PrismMesh_6050k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CheckPoint"]
+libraries = {
+"": SubResource("AnimationLibrary_hjw3e")
+}
+
+[node name="LevelStart" type="Marker3D" parent="."]
+visible = false
+
+[node name="Energy" type="MeshInstance3D" parent="LevelStart"]
+transform = Transform3D(1.80748, 0, 0, 0, 0.0794512, 0, 0, 0, 1.80748, 0, 0.241237, 0)
+mesh = SubResource("CylinderMesh_tpl7j")
+
+[node name="Pad" type="MeshInstance3D" parent="LevelStart"]
+transform = Transform3D(2.26341, 0, 0, 0, 0.0794512, 0, 0, 0, 2.26341, 0, 0.181658, 0)
+mesh = SubResource("CylinderMesh_acc6t")
+
+[node name="Spawner" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15393, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05814, 0)
+shape = SubResource("CylinderShape3D_pnmoy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

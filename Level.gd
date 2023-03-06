@@ -17,4 +17,5 @@ func _input(event):
 
 func _on_restarter_body_entered(body):
 	if body.is_in_group("Player"):
-		get_tree().reload_current_scene()
+		var player = body as PlayerNode
+		player.restart_level()

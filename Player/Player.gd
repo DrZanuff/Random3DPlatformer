@@ -1,6 +1,7 @@
 extends Player
 class_name PlayerNode
 
+var start_position := Vector3()
 @onready var DoubleJumpNode : DoubleJump3D = get_node("Double Jump 3D")
 @onready var DashNode : Dash3D = get_node("Dash 3D")
 @onready var ClimbNode : Climb3D = get_node("Climb 3D")
@@ -53,3 +54,10 @@ func _on_controller_subemerged():
 func toogle_climb_mode(state:bool):
 	ClimbNode.set_climbing(state)
 	is_climbing = state
+
+func set_start_position(pos : Vector3):
+	start_position = pos
+
+func restart_level():
+	velocity = Vector3()
+	global_position = start_position
