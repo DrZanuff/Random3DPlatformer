@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cen64x0v6j1ib"]
+
+[ext_resource type="Script" path="res://NPC/NPC.gd" id="1_riecf"]
+[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="2_6n7e4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y68c6"]
+size = Vector3(1, 1.44052, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6qwx5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ke3sv"]
+radius = 0.356529
+
+[node name="NPC" type="Area3D"]
+script = ExtResource("1_riecf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590386, 0)
+shape = SubResource("BoxShape3D_y68c6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.587226, 0, 0, 0, 0.587226, 0, 0, 0, 0.587226, 0, 0.52791, 0)
+mesh = SubResource("CapsuleMesh_6qwx5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766898, 0)
+shape = SubResource("SphereShape3D_ke3sv")
+
+[node name="Name" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63818, 0)
+billboard = 2
+text = "NPC"
+font = ExtResource("2_6n7e4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

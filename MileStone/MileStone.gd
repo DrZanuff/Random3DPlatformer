@@ -16,13 +16,14 @@ extends Area3D
 var activate := false
 
 func _ready():
-	if type == "CheckPoint":
-		$CheckPoint.show()
-		$LevelStart.hide()
-		$CheckPoint/AnimationPlayer.play("disabled")
-	else:
-		$LevelStart.show()
-		$CheckPoint.hide()
+	if not Engine.is_editor_hint():
+		if type == "CheckPoint":
+			$CheckPoint.show()
+			$LevelStart.hide()
+			$CheckPoint/AnimationPlayer.play("disabled")
+		else:
+			$LevelStart.show()
+			$CheckPoint.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -30,7 +31,6 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if not Engine.is_editor_hint():
-		print('ACTIVATE')
 		if body.is_in_group("Player"):
 			if type == "CheckPoint":
 				var player = body as PlayerNode

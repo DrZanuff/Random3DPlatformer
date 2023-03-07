@@ -1,6 +1,7 @@
 extends Player
 class_name PlayerNode
 
+var can_move := true
 var start_position := Vector3()
 @onready var DoubleJumpNode : DoubleJump3D = get_node("Double Jump 3D")
 @onready var DashNode : Dash3D = get_node("Dash 3D")
@@ -18,7 +19,7 @@ func _ready():
 func _physics_process(delta):
 	var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 
-	if is_valid_input:
+	if is_valid_input and can_move:
 		DoubleJumpNode.check_apply_double_jump(input_jump_action_name)
 		DashNode.check_apply_dash(input_dash_action_name)
 		
@@ -61,3 +62,10 @@ func set_start_position(pos : Vector3):
 func restart_level():
 	velocity = Vector3()
 	global_position = start_position
+	unfreeze_movement()
+	
+func freeze_movement():
+	can_move = false
+
+func unfreeze_movement():
+	can_move = true

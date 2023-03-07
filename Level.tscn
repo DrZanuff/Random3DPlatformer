@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c4r8dhggotckt"]
+[gd_scene load_steps=19 format=3 uid="uid://c4r8dhggotckt"]
 
 [ext_resource type="PackedScene" uid="uid://cn13pk5kwsiva" path="res://addons/kenney_prototype_tools/scenes/dark/dark_01.tscn" id="1_khcjw"]
 [ext_resource type="Script" path="res://Level.gd" id="1_wck88"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://diac8sepm33si" path="res://Jumper/jumper.tscn" id="9_ovqmd"]
 [ext_resource type="PackedScene" uid="uid://u3cvjhsav2ev" path="res://Vine/vine.tscn" id="10_wo8a3"]
 [ext_resource type="PackedScene" uid="uid://wvy6cqscf72m" path="res://MileStone/MileStone.tscn" id="11_ogol1"]
+[ext_resource type="PackedScene" uid="uid://cen64x0v6j1ib" path="res://NPC/NPC.tscn" id="12_q5qdx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5cdfn"]
 sky_top_color = Color(0, 0.596078, 0.866667, 1)
@@ -209,5 +210,8 @@ radius = 1.96141
 height = 3.25487
 sides = 12
 smooth_faces = false
+
+[node name="NPC" parent="." instance=ExtResource("12_q5qdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38308, 2.28589, -5.92788)
 
 [connection signal="body_entered" from="Restarter" to="." method="_on_restarter_body_entered"]

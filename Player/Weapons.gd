@@ -4,7 +4,6 @@ extends Marker3D
 @onready var player : Player = get_parent().get_parent().get_parent()
 
 func _process(delta):
-	print(player.velocity)
 	if player.is_on_floor() and !is_player_moving_on_ground():
 		play_animation("idle")
 	
