@@ -2,10 +2,13 @@ extends Player
 class_name PlayerNode
 
 var can_move := true
-var start_position := Vector3()
+@export var start_position := Vector3()
 @onready var DoubleJumpNode : DoubleJump3D = get_node("Double Jump 3D")
 @onready var DashNode : Dash3D = get_node("Dash 3D")
 @onready var ClimbNode : Climb3D = get_node("Climb 3D")
+
+var npc_dialog_callback := func(state:bool):
+	pass
 
 var is_climbing = false
 
@@ -43,11 +46,14 @@ func _input(event: InputEvent) -> void:
 	# Mouse look (only if the mouse is captured).
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.relative)
+	
+	if Input.is_action_just_pressed("interact"):
+		npc_dialog_callback.call(freeze_movement)
+		display_interact(false)
 
 
 func _on_controller_emerged():
 	camera.environment = null
-
 
 func _on_controller_subemerged():
 	camera.environment = underwater_env
@@ -62,10 +68,13 @@ func set_start_position(pos : Vector3):
 func restart_level():
 	velocity = Vector3()
 	global_position = start_position
-	unfreeze_movement()
+	freeze_movement(false)
 	
-func freeze_movement():
-	can_move = false
+func freeze_movement(state:bool):
+	can_move = !state
 
-func unfreeze_movement():
-	can_move = true
+func display_interact(state:bool):
+	$UI/Interact.visible = state
+
+func set_npc_callback(callback: Callable):
+	npc_dialog_callback = callback

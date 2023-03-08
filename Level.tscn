@@ -185,6 +185,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.653, 2.63875, -48.2752)
 
 [node name="PlayerNode" parent="." instance=ExtResource("9_hppp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79297, 2.69268, -2.65104)
+start_position = Vector3(3.793, 2.693, -2.651)
 air_control = 2.0
 fly_mode_speed_modifier = 0.4
 

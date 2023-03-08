@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cocwdaty441ep"]
+[gd_scene load_steps=34 format=3 uid="uid://cocwdaty441ep"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_xckyq"]
 [ext_resource type="Script" path="res://addons/character-controller/abilities/walk_ability_3d.gd" id="2_dwcod"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Player/Weapons.gd" id="12_i1ag8"]
 [ext_resource type="Texture2D" uid="uid://6yuh3vvo8es8" path="res://Player/Weapons/EnergyBlaster/Textures/EnergyBlaster.png" id="15_52eod"]
 [ext_resource type="ArrayMesh" uid="uid://bo22f2saad8f0" path="res://Player/Weapons/EnergyBlaster/EnergyBlaster.obj" id="15_q3hg0"]
+[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="18_0ka4t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
 
@@ -165,6 +166,22 @@ fill = 1
 fill_from = Vector2(0.519417, 0.5)
 fill_to = Vector2(0.878641, 0.15534)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2cfp"]
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_drucx"]
+font = ExtResource("18_0ka4t")
+font_size = 36
+
 [sub_resource type="Gradient" id="Gradient_tn1q8"]
 offsets = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0.135484, 0.193548, 0.309677, 0.36129)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
@@ -303,6 +320,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Interact" type="MarginContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 204.0
+offset_right = 10.0
+offset_bottom = 260.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="UI/Interact"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s2cfp")
+
+[node name="Label" type="Label" parent="UI/Interact"]
+layout_mode = 2
+text = "E"
+label_settings = SubResource("LabelSettings_drucx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AimContainer" type="CenterContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 8
@@ -317,7 +358,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="UI/AimContainer"]
+[node name="Aim" type="Sprite2D" parent="UI/AimContainer"]
 texture = SubResource("GradientTexture2D_o427x")
 
 [connection signal="timeout" from="Dash 3D/Timer" to="Dash 3D" method="_on_timer_timeout"]
