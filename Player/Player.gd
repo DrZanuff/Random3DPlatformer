@@ -3,6 +3,7 @@ class_name PlayerNode
 
 var can_move := true
 @export var start_position := Vector3()
+@export var chapters : Array[String] = ['default']
 @onready var DoubleJumpNode : DoubleJump3D = get_node("Double Jump 3D")
 @onready var DashNode : Dash3D = get_node("Dash 3D")
 @onready var ClimbNode : Climb3D = get_node("Climb 3D")

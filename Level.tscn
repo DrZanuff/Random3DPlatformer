@@ -214,5 +214,7 @@ smooth_faces = false
 
 [node name="NPC" parent="." instance=ExtResource("12_q5qdx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38308, 2.28589, -5.92788)
+chapters = Array[String](["lost_coin"])
+npc_name = "Doug"
 
 [connection signal="body_entered" from="Restarter" to="." method="_on_restarter_body_entered"]
