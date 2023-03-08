@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://ggo1k8uny0l7"]
+[gd_scene load_steps=5 format=3 uid="uid://ggo1k8uny0l7"]
+
+[ext_resource type="Script" path="res://NPC/lost_coin.gd" id="1_po2s3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b5l3e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ctfp"]
+albedo_color = Color(0.815686, 0.811765, 0, 1)
+emission_enabled = true
+emission = Color(0.85098, 0.866667, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6xkuj"]
+radial_segments = 8
 
 [node name="LostCoin" type="Area3D"]
+script = ExtResource("1_po2s3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_b5l3e")
+
+[node name="Pivot" type="Marker3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(-4.37114e-08, -0.117096, 0, 1, -5.11844e-09, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5ctfp")
+mesh = SubResource("CylinderMesh_6xkuj")
+skeleton = NodePath("../..")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -33,9 +33,6 @@ func start_npc_dialog(freeze_movement: Callable):
 	Dialogic.timeline_ended.connect(func():
 		freeze_movement.call(false)
 	)
-	
-#	print(Dialogic.timeline_directory)
-#	print('DBG:', Dialogic.find_timeline('Greet'))
 
 func find_common_timeline() -> String:
 	for p in player_chapters.size():
@@ -49,11 +46,15 @@ func find_common_timeline() -> String:
 func get_timeline() -> String:
 	var chapter_name = find_common_timeline()
 	
-	if Dialogic.find_timeline(name + "_" + chapter_name):
-		return name + "_" + chapter_name
+	var named_timeline = npc_name + "_" + chapter_name
+	print('DBG: Specific Action ', Dialogic.find_timeline(named_timeline),' - ' ,named_timeline)
+	if Dialogic.find_timeline(named_timeline) != '':
+		return named_timeline
 	
-	if Dialogic.find_timeline(name + '_default'):
-		return name + '_default'
+	var default_timeline = npc_name + '_default'
+	print('DBG: Default Action ', Dialogic.find_timeline(default_timeline),' - ' ,default_timeline)
+	if Dialogic.find_timeline(default_timeline) != '':
+		return default_timeline
 	
 	return 'Greet'
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4r8dhggotckt"]
+[gd_scene load_steps=20 format=3 uid="uid://c4r8dhggotckt"]
 
 [ext_resource type="PackedScene" uid="uid://cn13pk5kwsiva" path="res://addons/kenney_prototype_tools/scenes/dark/dark_01.tscn" id="1_khcjw"]
 [ext_resource type="Script" path="res://Level.gd" id="1_wck88"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://u3cvjhsav2ev" path="res://Vine/vine.tscn" id="10_wo8a3"]
 [ext_resource type="PackedScene" uid="uid://wvy6cqscf72m" path="res://MileStone/MileStone.tscn" id="11_ogol1"]
 [ext_resource type="PackedScene" uid="uid://cen64x0v6j1ib" path="res://NPC/NPC.tscn" id="12_q5qdx"]
+[ext_resource type="PackedScene" uid="uid://ggo1k8uny0l7" path="res://NPC/lost_coin.tscn" id="13_ep43n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5cdfn"]
 sky_top_color = Color(0, 0.596078, 0.866667, 1)
@@ -216,5 +217,8 @@ smooth_faces = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38308, 2.28589, -5.92788)
 chapters = Array[String](["lost_coin"])
 npc_name = "Doug"
+
+[node name="LostCoin" parent="." instance=ExtResource("13_ep43n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.982, 1.97355, -6.88461)
 
 [connection signal="body_entered" from="Restarter" to="." method="_on_restarter_body_entered"]
