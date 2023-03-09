@@ -250,7 +250,7 @@ omni_range = 2.21578
 
 [node name="Jewel" type="MeshInstance3D" parent="CheckPoint"]
 unique_name_in_owner = true
-transform = Transform3D(-0.402176, 0, -0.0994026, 0, 0.429769, 0, 0.150092, 0, -0.266358, 0, 1.0647, 0)
+transform = Transform3D(0.314703, 0, 0.193338, 0, 0.429769, 0, -0.291926, 0, 0.208425, 0, 1.0647, 0)
 material_override = SubResource("StandardMaterial3D_e32r8")
 transparency = 0.41
 mesh = SubResource("PrismMesh_6050k")

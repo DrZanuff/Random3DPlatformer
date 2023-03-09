@@ -26,7 +26,7 @@ editor/current_editor=&"Timeline Editor"
 editor/current_resources={
 "Timeline Editor": "res://NPC/Doug_lost_coin.dtl"
 }
-editor/last/resources=["res://NPC/Greet.dtl", "res://NPC/Doug_default.dtl", "res://NPC/Doug_lost_coin.dtl"]
+editor/last/resources=[]
 editor/visual_timeline_editor_sidebar=200.0
 variables={}
 layout/mode=0

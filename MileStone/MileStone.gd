@@ -35,9 +35,10 @@ func _on_body_entered(body):
 			if type == "CheckPoint":
 				var player = body as PlayerNode
 				disable_other_check_points()
-				player.set_start_position($Spawner.global_position)
+				player.save_checkpoint($Spawner.global_position)
 				$CheckPoint/AnimationPlayer.play("enabled")
 				activate = true
+				get_tree().call_group('Collectible','destroy')
 			
 
 func disable_other_check_points():

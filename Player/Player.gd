@@ -1,15 +1,29 @@
 extends Player
 class_name PlayerNode
 
+# Movement
 var can_move := true
 @export var start_position := Vector3()
-@export var chapters : Array[String] = ['default']
 @onready var DoubleJumpNode : DoubleJump3D = get_node("Double Jump 3D")
 @onready var DashNode : Dash3D = get_node("Dash 3D")
 @onready var ClimbNode : Climb3D = get_node("Climb 3D")
 
-var npc_dialog_callback := func(state:bool):
-	pass
+# Dialogs
+@export var chapters : Array[String]
+@onready var SnapShotNode : SanpShot = get_node("Scripts/SnapShot")
+
+# Collectibles
+@export var energy_shots := 0
+@export var vine_shots := 0
+
+# Snapshot
+@onready var sanpshot = {
+	"chapters": chapters,
+	"energy_shots": 0,
+	"vine_shots": 0,
+}
+
+var npc_dialog_callback : Callable
 
 var is_climbing = false
 
@@ -21,6 +35,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	$UI/Debug.text = str(chapters)
 	var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 
 	if is_valid_input and can_move:
@@ -49,8 +64,9 @@ func _input(event: InputEvent) -> void:
 		rotate_head(event.relative)
 	
 	if Input.is_action_just_pressed("interact"):
-		npc_dialog_callback.call(freeze_movement)
-		display_interact(false)
+		if (npc_dialog_callback):
+			npc_dialog_callback.call(freeze_movement)
+			display_interact(false)
 
 
 func _on_controller_emerged():
@@ -63,13 +79,15 @@ func toogle_climb_mode(state:bool):
 	ClimbNode.set_climbing(state)
 	is_climbing = state
 
-func set_start_position(pos : Vector3):
+func save_checkpoint(pos : Vector3):
 	start_position = pos
+	SnapShotNode.update_snapshot(self)
 
 func restart_level():
 	velocity = Vector3()
 	global_position = start_position
 	freeze_movement(false)
+	SnapShotNode.reset_to_snapshot(self)
 	
 func freeze_movement(state:bool):
 	can_move = !state
